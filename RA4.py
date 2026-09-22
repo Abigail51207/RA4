@@ -30,7 +30,7 @@ class Complex:
         return Complex(self._real, -1*self._imag)
 
 
-    def __mul__(self, other):
+    def __mul__(self, other): 
 
         if isinstance(other, Complex):
 
@@ -57,6 +57,27 @@ class Complex:
         return self*other
 
 class Real(Complex):
+    def __mul__(self, other):
+        produce = super().__mul__(other) 
+    
+        if isinstance(other, Complex):
+    
+            real_part = self._real*other._real - self._imag*other._imag
+    
+            imag_part = self._imag*other._real + self._real*other._imag
+    
+            ans = Real(real_part, imag_part)
+    
+        else:
+    
+            real_part = self._real*other
+    
+            imag_part = self._imag*other
+    
+            ans = Real(real_part, imag_part)
+    
+        return ans
+    
 
     def __init__(self, value):
         super().__init__(value, 0)
